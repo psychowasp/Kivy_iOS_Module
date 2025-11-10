@@ -2,10 +2,10 @@ import Foundation
 import UIKit
 import Combine
 
-
+import CPython
 import PySwiftKit
 import PySerializing
-import PyDictionary
+//import PyDictionary
 import PySwiftWrapper
 
 
@@ -25,7 +25,7 @@ public class IOSKeyboard {
 	static let shared = IOSKeyboard()
 	
 	let kivy_window = PyImport(from: "kivy.core.window", import_name: "Window")!
-	let trigger_keyboard_height = "trigger_keyboard_height".pyPointer
+	let trigger_keyboard_height = "trigger_keyboard_height".pyPointer()
 	
 	var kheight: Double = 0
 	
@@ -51,8 +51,8 @@ public class IOSKeyboard {
 
 	
 	deinit {
-		kivy_window.decref()
-		trigger_keyboard_height.decref()
+		kivy_window.decRef()
+		trigger_keyboard_height.decRef()
 	}
 	
 	func keyboardWillShow(height: Double) {

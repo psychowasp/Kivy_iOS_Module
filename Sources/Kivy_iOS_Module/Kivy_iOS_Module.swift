@@ -5,8 +5,8 @@ import Combine
 
 import PySwiftKit
 import PySerializing
-import PyDictionary
-import PySwiftObject
+//import PyDictionary
+//import PySwiftObject
 
 import PySwiftWrapper
 
@@ -170,15 +170,15 @@ struct Ios: PyModuleProtocol {
         
         if #available(iOS 11.0, *) {
             let safeArea = UIApplication.shared.delegate!.window!!.safeAreaInsets
-            PyDict_SetItem(dict, "top", safeArea.top)
-            PyDict_SetItem(dict, "bottom", safeArea.bottom)
-            PyDict_SetItem(dict, "left", safeArea.left)
-            PyDict_SetItem(dict, "right", safeArea.right)
+            try! PyDict_SetItem(dict, key: "top", value: safeArea.top)
+            try! PyDict_SetItem(dict, key: "bottom", value: safeArea.bottom)
+            try! PyDict_SetItem(dict, key: "left", value: safeArea.left)
+            try! PyDict_SetItem(dict, key: "right", value: safeArea.right)
         } else {
-            PyDict_SetItem(dict, "top", 0.0)
-            PyDict_SetItem(dict, "bottom", 0.0)
-            PyDict_SetItem(dict, "left", 0.0)
-            PyDict_SetItem(dict, "right", 0.0)
+            try! PyDict_SetItem(dict, key: "top", value: 0.0)
+            try! PyDict_SetItem(dict, key: "bottom", value: 0.0)
+            try! PyDict_SetItem(dict, key: "left", value: 0.0)
+            try! PyDict_SetItem(dict, key: "right", value: 0.0)
         }
         return dict
     }
